@@ -1,23 +1,15 @@
 import { NestFactory } from '@nestjs/core';
-import { MicroserviceOptions } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
+
 dotenv.config();
 
 async function bootstrap() {
-  const port = process.env.PORT || 3001; // Usar el puerto dinámico de Render
   const app = await NestFactory.create(AppModule);
+  const port = process.env.PORT || 3001; // Render asignará el puerto desde el entorno
 
-  app.connectMicroservice<MicroserviceOptions>({
-    options: {
-      port: Number(port),
-      host: '0.0.0.0',
-    },
-  });
-
-  await app.startAllMicroservices();
-  await app.listen(port);
-  console.log(`Microservice listening on port: ${port}`);
+  await app.listen(port, '0.0.0.0'); // Asegúrate de usar '0.0.0.0' para ser accesible externamente
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();
