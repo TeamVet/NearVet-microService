@@ -17,6 +17,7 @@ async function bootstrap() {
   await httpApp.listen(3002); // Puerto HTTP
   await app.listen();
   console.log('Microservice is running on port 3001');
+  console.log(app);
 }
 /* 
 ==> Port scan timeout reached, no open HTTP ports detected. 
