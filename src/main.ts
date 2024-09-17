@@ -13,11 +13,12 @@ async function bootstrap() {
       host: '0.0.0.0', // Asegura que el servicio sea accesible
     },
   });
-  const httpApp = await NestFactory.create(AppModule);
+  const httpApp = await NestFactory.create(AppModule, {
+    logger: ['error'],
+  });
   await httpApp.listen(3002); // Puerto HTTP
   await app.listen();
   console.log('Microservice is running on port 3001');
-  console.log(app);
 }
 /* 
 ==> Port scan timeout reached, no open HTTP ports detected. 
