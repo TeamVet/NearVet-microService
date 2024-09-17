@@ -10,7 +10,7 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: {
       port: Number(port),
-      host: '0.0.0.0',
+      host: '52.41.36.82' || '54.191.253.12' || '44.226.122.3',
     },
   });
   await app.listen();
