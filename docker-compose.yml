@@ -3,6 +3,6 @@ services:
   nestapp:
     image: teamhvet/payment_microservice
     ports:
-      - '3001:3000'
+      - '3002:3000'
     env_file:
       - .env

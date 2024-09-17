@@ -1,17 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 dotenv.config();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: ['error', 'warn', 'log', 'debug', 'verbose'],
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.TCP, // Transport en TCP
+    options: {
+      port: 3001, // Asegúrate de que el puerto coincida con el configurado en el monolito
+      host: '0.0.0.0', // Asegura que el servicio sea accesible
+    },
   });
-  const port = process.env.PORT || 3001; // Render asignará el puerto desde el entorno
-
-  await app.listen(port, '0.0.0.0'); // Asegúrate de usar '0.0.0.0' para ser accesible externamente
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  await app.listen();
+  console.log('Microservice is running on port 3001');
 }
 
 bootstrap();

@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 //import { ApiBody, ApiTags } from '@nestjs/swagger';
 //import { MercadopagoService } from './mercado-pago/mercado-pago.service';
 //import { MercadoPagoDTO } from './mercado-pago/mercado-pago.dto';
@@ -48,7 +48,6 @@ export class PaymentsController {
     };
   } */
   @MessagePattern('pattern-name')
-  @Post('/stripe/create-checkout-session')
   /* @ApiBody({
     description: 'Solo se ingresa el ID del producto cargado en el dashboard/products de stripe',
     required: true,
