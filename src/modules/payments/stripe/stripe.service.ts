@@ -37,8 +37,8 @@ export class StripeService {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.DB_MONOLITIC}/success`, // URL de éxito
-      cancel_url: `${process.env.DB_MONOLITIC}/cancel`, // URL de cancelación
+      //success_url: `${process.env.DB_MONOLITIC}/success`, // URL de éxito
+      //cancel_url: `${process.env.DB_MONOLITIC}/cancel`, // URL de cancelación
     });
     return { url: session.url };
   }
