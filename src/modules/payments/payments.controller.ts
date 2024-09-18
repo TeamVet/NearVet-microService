@@ -1,11 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 //import { ApiBody, ApiTags } from '@nestjs/swagger';
 //import { MercadopagoService } from './mercado-pago/mercado-pago.service';
 //import { MercadoPagoDTO } from './mercado-pago/mercado-pago.dto';
 import { StripeService } from './stripe/stripe.service';
-import { MessagePattern, Payload } from '@nestjs/microservices';
-
-//@ApiTags('payments')
 @Controller('payments')
 export class PaymentsController {
   constructor(
@@ -47,12 +44,12 @@ export class PaymentsController {
       clientSecret: paymentIntent.client_secret,
     };
   } */
-  @MessagePattern('pattern-name')
   /* @ApiBody({
     description: 'Solo se ingresa el ID del producto cargado en el dashboard/products de stripe',
     required: true,
   }) */
-  async createCheckoutSession(@Payload() priceId: string) {
+  @Post('/stripe/create-checkout-session')
+  async createCheckoutSession(@Body('priceId') priceId: string) {
     return await this.stripeService.createCheckoutSessionService(priceId);
   }
 }
