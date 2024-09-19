@@ -37,8 +37,8 @@ export class StripeService {
         },
       ],
       mode: 'payment',
-      success_url: `https://nearvet-latest.onrender.com/success`, // URL de éxito
-      cancel_url: `https://nearvet-latest.onrender.com/cancel`, // URL de cancelación
+      success_url: `https://near-vet-front.vercel.app/appointment/success`, // URL de éxito
+      cancel_url: `https://near-vet-front.vercel.app/appointment/reject`, // URL de cancelación
     });
     return { url: session.url };
   }
