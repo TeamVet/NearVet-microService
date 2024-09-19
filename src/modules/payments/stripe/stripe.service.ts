@@ -28,7 +28,7 @@ export class StripeService {
     });
   }
 
-  async createCheckoutSessionService(priceId: string) {
+  async createCheckoutSessionService(priceId: string, promoCode: string) {
     const session = await this.stripe.checkout.sessions.create({
       line_items: [
         {
@@ -37,6 +37,11 @@ export class StripeService {
         },
       ],
       mode: 'payment',
+      discounts: [
+        {
+          promotion_code: promoCode, // ID del código de promoción (opcional)
+        },
+      ],
       success_url: `https://near-vet-front.vercel.app/appointment/success`, // URL de éxito
       cancel_url: `https://near-vet-front.vercel.app/appointment/reject`, // URL de cancelación
     });

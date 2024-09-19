@@ -49,7 +49,7 @@ export class PaymentsController {
     required: true,
   }) */
   @Post('/stripe/create-checkout-session')
-  async createCheckoutSession(@Body('priceId') priceId: string) {
-    return await this.stripeService.createCheckoutSessionService(priceId);
+  async createCheckoutSession(@Body('priceId') priceId: string, @Body('promoCode') promoCode: string) {
+    return await this.stripeService.createCheckoutSessionService(priceId, promoCode);
   }
 }
